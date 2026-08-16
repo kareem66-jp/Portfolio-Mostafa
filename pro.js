@@ -80,7 +80,7 @@ let pro2 = document.getElementById("pro");
 let footCon = document.getElementById("foot-con");
 
 home.addEventListener("click", () => {
-  window.location.href = "pro.html";
+  window.location.href = "index.html";
 });
 project.addEventListener("click", () => {
   window.location.replace("project.html");
