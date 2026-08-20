@@ -1294,7 +1294,7 @@ span.arrow {
   z-index: 22222;
   bottom: 30px;
   right: 30px;
-  background-color: #99999924;
+  background-color: #9999994a;
   padding: 14px;
   font-size: 1.5rem;
   border-radius: 50%;
@@ -1302,6 +1302,7 @@ span.arrow {
   cursor: pointer;
   transition: 0.3s;
   transform: scale(0);
+  box-shadow: 0px 0px 30px #00000028;
 }
 span.arrow:hover {
   background-color: #99999918;
