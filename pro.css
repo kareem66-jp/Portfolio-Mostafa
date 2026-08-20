@@ -6,6 +6,7 @@
 }
 body {
   background: linear-gradient(to right, #0e131b, #00004a, #0e131b);
+  overflow-x: hidden;
 }
 /* Header */
 header {
@@ -329,7 +330,6 @@ p.my4 {
   box-shadow: 0 0 15px #00d2f363;
   background-color: #00b7d4;
 }
-/* موبايل */
 @media (max-width: 768px) {
   .slider {
     flex: 0 0 100%;
@@ -409,9 +409,9 @@ p.text-skills {
 .cards-skills {
   display: flex;
   gap: 20px;
-  animation: move 10s linear infinite;
+  animation: anim 10s linear infinite;
 }
-@keyframes move {
+@keyframes anim {
   0% {
     transform: translateX(0%);
   }
@@ -692,6 +692,17 @@ button#view:hover #arow {
   transform: translateX(5px);
 }
 /* section S6 */
+.hom {
+  cursor: pointer;
+  transition: 0.3s;
+  color: #787878;
+}
+.hom:hover {
+  color: #00b7d4;
+}
+.proje {
+  color: #00b7d4;
+}
 
 /* section S7 */
 section.s7 {
@@ -1098,6 +1109,9 @@ p.Daylight {
   .card {
     width: 8rem;
   }
+  .cards {
+    gap: 6px;
+  }
   .opportunities {
     text-align: start;
     padding: 1rem 1rem 1rem 4rem;
@@ -1226,7 +1240,7 @@ p.Daylight {
     padding: 4.5rem 0;
   }
   img.dior {
-    height: 37vh;
+    height: 42vh;
   }
   .dior-par {
     bottom: 3rem;
@@ -1274,3 +1288,32 @@ p.Daylight {
 }
 
 /* mobile */
+span.arrow {
+  position: fixed;
+  color: white;
+  z-index: 22222;
+  bottom: 30px;
+  right: 30px;
+  background-color: #99999924;
+  padding: 14px;
+  font-size: 1.5rem;
+  border-radius: 50%;
+  border: 1px solid #94949463;
+  cursor: pointer;
+  transition: 0.3s;
+  transform: scale(0);
+}
+span.arrow:hover {
+  background-color: #99999918;
+  color: #00b7d4;
+  border: 1px solid #00b7d4;
+}
+span.arrow i {
+  transition: 0.3s;
+}
+span.arrow:hover i {
+  transform: translateY(-5px);
+}
+.arrow.show {
+  transform: scale(1);
+}

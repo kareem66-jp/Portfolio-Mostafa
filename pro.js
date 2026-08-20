@@ -113,11 +113,12 @@ if (section6) {
       image: "./photo/s 01 (1).jpg",
       title: "Japanese room",
       style: "Japanese",
-      space: "Master Bathroom",
+      space: "Master Badroom",
       body: `A master bathroom inspired by the simplicity and tranquility of <br>
               Japanese design, using natural materials, warm lighting, and a <br>
               minimalist approach to create a calm and relaxing atmosphere.`,
       SoftwareUsed: "Software Used: 3ds Max | V-Ray | AutoCAD | Photoshop",
+      link: "proJapan.html",
     },
     {
       image: "./Day Shot/IMG_20260617_003156.jpg",
@@ -213,3 +214,24 @@ sho.addEventListener("click", () => {
 });
 
 // show header in mobile
+
+// top bage
+
+let sp = document.querySelector(".arrow");
+
+window.addEventListener("scroll", function () {
+  if (this.scrollY >= 500) {
+    sp.classList.add("show");
+  } else {
+    sp.classList.remove("show");
+  }
+});
+
+sp.onclick = () => {
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth",
+  });
+};
+
+// top bage
