@@ -1107,7 +1107,7 @@ p.Daylight {
     height: auto;
   }
   .card {
-    width: 8rem;
+    width: 100%;
   }
   .cards {
     gap: 6px;
