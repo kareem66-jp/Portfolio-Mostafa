@@ -1579,6 +1579,8 @@ span.arrow:hover i {
     min-height: 43.7rem;
     gap: clamp(2rem, 3vw, 3.125rem);
     padding: 4rem 0;
+    display: flex;
+    flex-direction: column;
   }
 
   .I-am {
@@ -1589,7 +1591,9 @@ span.arrow:hover i {
     flex: 1;
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
-
+  .all-card {
+    width: 100%;
+  }
   .card {
     width: auto;
     height: auto;
