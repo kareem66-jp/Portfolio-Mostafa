@@ -408,19 +408,47 @@ p.text-skills {
   font-weight: bold;
   margin-bottom: 18px;
 }
+.skills-carousel {
+  width: 100%;
+  overflow: hidden;
+  padding: 28px 0;
+  margin: -28px 0;
+  /* Softly fades cards as they enter and leave the carousel. */
+  -webkit-mask-image: linear-gradient(
+    to right,
+    transparent,
+    #000 8%,
+    #000 92%,
+    transparent
+  );
+  mask-image: linear-gradient(
+    to right,
+    transparent,
+    #000 8%,
+    #000 92%,
+    transparent
+  );
+}
 .cards-skills {
   display: flex;
   gap: 20px;
-  animation: anim 10s linear infinite;
+  width: max-content;
+  animation: skills-scroll 24s linear infinite;
+  will-change: transform;
 }
-/* @keyframes anim {
+.cards-skills__group {
+  display: flex;
+  flex: none;
+  gap: 20px;
+}
+@keyframes skills-scroll {
   0% {
-    transform: translateX(0%);
+    transform: translateX(0);
   }
   100% {
-    transform: translateX(-50%);
+    transform: translateX(calc(-50% - 10px));
   }
-} */
+}
 .card-sills {
   background-color: #4e4e4e38;
   padding: 32px;
@@ -428,6 +456,7 @@ p.text-skills {
   border-radius: 25px;
   text-align: center;
   width: 246px;
+  flex: 0 0 246px;
   position: relative;
   transition: 0.3s;
 }
@@ -466,6 +495,11 @@ p.html {
   margin-top: 29px;
   color: #b0b0b0;
   transition: 0.3s;
+}
+@media (prefers-reduced-motion: reduce) {
+  .cards-skills {
+    animation-play-state: paused;
+  }
 }
 /* Section S4 */
 
