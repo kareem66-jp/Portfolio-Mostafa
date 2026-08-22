@@ -408,9 +408,14 @@ p.text-skills {
   font-weight: bold;
   margin-bottom: 18px;
 }
+.skills-carousel-wrap {
+  width: 100%;
+}
 .skills-carousel {
   width: 100%;
   overflow: hidden;
+  cursor: grab;
+  touch-action: pan-y;
   padding: 28px 0;
   margin: -28px 0;
   /* Softly fades cards as they enter and leave the carousel. */
@@ -429,12 +434,36 @@ p.text-skills {
     transparent
   );
 }
+.skills-carousel:active {
+  cursor: grabbing;
+}
 .cards-skills {
   display: flex;
   gap: 20px;
   width: max-content;
   animation: skills-scroll 24s linear infinite;
   will-change: transform;
+}
+.skills-carousel__controls {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 18px;
+}
+.skills-carousel__button {
+  width: 42px;
+  height: 42px;
+  color: white;
+  background: #4e4e4e38;
+  border: 1px solid #9696963d;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: 0.3s;
+}
+.skills-carousel__button:hover {
+  background: #00b7d4;
+  border-color: #00b7d4;
+  transform: translateY(-3px);
 }
 .cards-skills__group {
   display: flex;

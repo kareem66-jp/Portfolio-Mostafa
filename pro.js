@@ -55,6 +55,71 @@ if (sliders) {
 
 // slider
 
+// Skills carousel: drag/swipe and arrows control the CSS animation timeline.
+const skillsCarousel = document.querySelector(".skills-carousel");
+const skillsTrack = document.querySelector(".cards-skills");
+
+if (skillsCarousel && skillsTrack) {
+  const getAnimation = () => skillsTrack.getAnimations()[0];
+  const loopTime = (time, duration) =>
+    ((time % duration) + duration) % duration;
+  const getCycleWidth = () => {
+    const group = skillsTrack.querySelector(".cards-skills__group");
+    const gap = parseFloat(getComputedStyle(skillsTrack).gap) || 0;
+    return group.offsetWidth + gap;
+  };
+  let dragStartX = 0;
+  let dragStartTime = 0;
+  let dragging = false;
+
+  skillsCarousel.addEventListener("pointerdown", (event) => {
+    const animation = getAnimation();
+    if (!animation) return;
+
+    dragging = true;
+    dragStartX = event.clientX;
+    dragStartTime = Number(animation.currentTime) || 0;
+    animation.pause();
+    skillsCarousel.setPointerCapture(event.pointerId);
+  });
+
+  skillsCarousel.addEventListener("pointermove", (event) => {
+    if (!dragging) return;
+
+    const animation = getAnimation();
+    const duration = Number(animation.effect.getTiming().duration);
+    const elapsed = ((event.clientX - dragStartX) / getCycleWidth()) * duration;
+    animation.currentTime = loopTime(dragStartTime - elapsed, duration);
+  });
+
+  const endSkillsDrag = (event) => {
+    if (!dragging) return;
+    dragging = false;
+    if (skillsCarousel.hasPointerCapture(event.pointerId)) {
+      skillsCarousel.releasePointerCapture(event.pointerId);
+    }
+    getAnimation()?.play();
+  };
+
+  skillsCarousel.addEventListener("pointerup", endSkillsDrag);
+  skillsCarousel.addEventListener("pointercancel", endSkillsDrag);
+
+  document.querySelectorAll("[data-skills-direction]").forEach((button) => {
+    button.addEventListener("click", () => {
+      const animation = getAnimation();
+      if (!animation) return;
+
+      const duration = Number(animation.effect.getTiming().duration);
+      const step = (320 / getCycleWidth()) * duration;
+      const direction = button.dataset.skillsDirection === "next" ? 1 : -1;
+      animation.currentTime = loopTime(
+        (Number(animation.currentTime) || 0) + direction * step,
+        duration,
+      );
+    });
+  });
+}
+
 // =================================
 const links = document.querySelectorAll(".link p");
 
