@@ -96,21 +96,23 @@ img.img {
   position: relative;
   height: 65vh;
 }
+.image {
+  position: relative;
+}
 .image::before {
   content: "";
   position: absolute;
-  width: 25%;
-  height: 50%;
-  background: #5f88ff;
+  width: 100%;
+  height: 100%;
+  background: #5f88ff61;
   filter: blur(80px);
   border-radius: 50%;
-  bottom: 21%;
-  left: 63.5%;
-  transform: translateX(-50px);
+  bottom: 0%;
+  left: 0%;
   transition: 0.5s;
 }
 .image:hover::before {
-  background: #96b0fd;
+  background: #96b0fd5e;
 }
 .contact-me {
   display: flex;
@@ -1075,13 +1077,6 @@ p.Daylight {
     width: 70%;
   }
 
-  .image::before {
-    left: 31%;
-    bottom: -28%;
-    width: 50%;
-    height: 64%;
-  }
-
   section.s2 {
     height: auto;
     flex-direction: column;
@@ -1291,12 +1286,7 @@ p.Daylight {
     width: 18rem;
     height: 100%;
   }
-  .image::before {
-    width: 25%;
-    height: 40%;
-    bottom: -4%;
-    left: 50%;
-  }
+
   /* s1 */
 
   /* s2 */
