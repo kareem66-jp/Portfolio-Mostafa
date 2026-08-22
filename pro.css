@@ -1509,3 +1509,172 @@ span.arrow:hover i {
 .arrow.show {
   transform: scale(1);
 }
+
+/* medium and large desktop: 1025px - 1600px */
+@media (min-width: 1025px) and (max-width: 1600px) {
+  #header,
+  section.s1,
+  section.s2,
+  .s3,
+  .s4,
+  footer,
+  section#s6,
+  section.s7,
+  section.s9 {
+    margin-left: clamp(3rem, 7vw, 10%);
+    margin-right: clamp(3rem, 7vw, 10%);
+  }
+
+  #header {
+    padding: 16px 0;
+  }
+
+  p.logo {
+    font-size: clamp(2rem, 2.5vw, 2.45rem);
+  }
+
+  .link {
+    gap: clamp(0.25rem, 0.8vw, 0.75rem);
+    font-size: clamp(0.95rem, 1.15vw, 1.125rem);
+  }
+
+  p#home,
+  p#projects,
+  p#contact,
+  p#home:hover,
+  p#projects:hover,
+  p#contact:hover {
+    padding: 11px clamp(12px, 1.25vw, 22px);
+  }
+
+  button#cv {
+    padding: 11px clamp(14px, 1.4vw, 24px);
+  }
+
+  section.s1 {
+    padding-top: clamp(8.5rem, 10vw, 11rem);
+    gap: clamp(2rem, 4vw, 5rem);
+  }
+
+  p.mostafa .mos,
+  p.mostafa .ibr {
+    font-size: clamp(4rem, 5.5vw, 5.5rem);
+  }
+
+  p.develp {
+    font-size: clamp(1.45rem, 2vw, 2rem);
+  }
+
+  .image {
+    flex: 0 1 42%;
+  }
+
+  img.img {
+    height: min(65vh, 46vw);
+    object-fit: contain;
+  }
+
+  section.s2 {
+    height: auto;
+    min-height: 43.7rem;
+    gap: clamp(2rem, 3vw, 3.125rem);
+    padding: 4rem 0;
+  }
+
+  .I-am {
+    flex: 0 1 32%;
+  }
+
+  .cards {
+    flex: 1;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .card {
+    width: auto;
+    height: auto;
+    min-height: 190px;
+  }
+
+  .opportunities {
+    transform: none;
+    margin-top: 2rem;
+  }
+
+  .slider {
+    flex-basis: min(47%, 30.5rem);
+    width: auto;
+  }
+
+  i#ic {
+    width: clamp(4rem, 13%, 5rem);
+  }
+
+  .project1,
+  .project2,
+  .all-project.reverse .project1 {
+    gap: clamp(2.5rem, 5vw, 5rem);
+  }
+
+  img.imge-pro {
+    width: 100%;
+  }
+
+  p.title {
+    font-size: clamp(2.5rem, 4vw, 3.5rem);
+  }
+
+  p.title-text {
+    font-size: clamp(1rem, 1.35vw, 1.25rem);
+  }
+
+  section.s7 {
+    gap: clamp(2.5rem, 5vw, 5rem);
+  }
+
+  p.con-par1 {
+    font-size: clamp(2.5rem, 4vw, 3.5rem);
+  }
+
+  p.con-par2 {
+    width: 100%;
+  }
+
+  .dior-par {
+    margin-left: clamp(3rem, 7vw, 8rem);
+    width: min(52rem, 62%);
+    font-size: clamp(1.35rem, 2vw, 2rem);
+  }
+
+  p.store,
+  p.Daylight {
+    font-size: clamp(3.5rem, 5vw, 5rem);
+  }
+}
+
+/* Narrow desktops need stacked content before the tablet layout starts. */
+@media (min-width: 1025px) and (max-width: 1240px) {
+  section.s2 {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .I-am {
+    text-align: center;
+  }
+
+  section.s7 {
+    flex-direction: column;
+  }
+
+  .project1,
+  .project2,
+  .all-project.reverse .project1 {
+    gap: 2.5rem;
+    padding: 4rem 0;
+  }
+
+  img.imge-pro {
+    width: min(48vw, 34rem);
+  }
+}
