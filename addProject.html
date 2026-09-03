@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mostafa Ibrahem</title>
+    <link rel="stylesheet" href="pro.css" />
+    <script
+      src="https://kit.fontawesome.com/93f6b958ed.js"
+      crossorigin="anonymous"
+    ></script>
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css"
+    />
+  </head>
+  <body class="form">
+    <section class="all-addProject">
+      <h1 class="Add-Projects">Add Projects</h1>
+      <main id="add-main">
+        <div class="pageAddProject">
+          <div>
+            <label for="tit">Title</label>
+            <input type="text" id="tit" placeholder="Project Title" />
+          </div>
+
+          <div>
+            <label for="style">Style</label>
+            <input type="text" id="style" placeholder="Project Style" />
+          </div>
+
+          <div>
+            <label for="space">Space</label>
+            <input type="text" id="space" placeholder="Space Project" />
+          </div>
+
+          <div>
+            <label for="body">Body</label>
+            <textarea id="body" placeholder="Project Details"></textarea>
+          </div>
+
+          <div>
+            <label for="app">Software used</label>
+            <input type="text" id="app" placeholder="Software used" />
+          </div>
+
+          <div>
+            <label for="add-image">Image</label>
+            <input type="file" id="add-image" />
+          </div>
+        </div>
+        <hr />
+        <div class="pageAddProject">
+          <div>
+            <label for="">Day Shots</label>
+            <input type="file" id="day-images" accept="image/*" multiple />
+          </div>
+
+          <div>
+            <label for="">Night Shots</label>
+            <input type="file" id="night-images" accept="image/*" multiple />
+          </div>
+
+          <div>
+            <label for="">Close Shots</label>
+            <input type="file" id="close-images" accept="image/*" multiple />
+          </div>
+        </div>
+      </main>
+
+      <button id="add-projects">Add Project</button>
+    </section>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="pro.js"></script>
+  </body>
+</html>
