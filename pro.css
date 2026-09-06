@@ -1991,3 +1991,28 @@ button.btn-categorie:hover {
 }
 
 /* categories */
+
+/* شكل الاسكرول */
+
+/* عرض الـ Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+/* خلفية الـ Scrollbar */
+::-webkit-scrollbar-track {
+  background: #000721;
+}
+
+/* الجزء اللي بيتحرك */
+::-webkit-scrollbar-thumb {
+  background: #00b7d4;
+  border-radius: 10px;
+}
+
+/* لما تعمل Hover عليه */
+::-webkit-scrollbar-thumb:hover {
+  background: #008296;
+}
+
+/* شكل الاسكرول */
