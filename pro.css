@@ -99,7 +99,7 @@ p.mostafa .mos,
 p.mostafa .ibr {
   font-size: 5.5rem;
   background: linear-gradient(to right, white, #2586ff);
-  -webkit-background-clip: text;
+  background-clip: text;
   -webkit-text-fill-color: transparent;
   font-weight: bold;
 }
@@ -679,7 +679,7 @@ section.s5 {
 .spans {
   font-size: 4.5rem;
   background: linear-gradient(to right, #a9afff, #1e42de);
-  -webkit-background-clip: text;
+  background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 .Pro {
@@ -715,7 +715,7 @@ p.par2-s6 {
 }
 p.par2-s6 span {
   background: linear-gradient(to right, #1e42de, #a9afff, #7f5cff);
-  -webkit-background-clip: text;
+  background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 .project1 {
