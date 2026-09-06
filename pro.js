@@ -238,6 +238,7 @@ let projects = [
             minimalist approach to create a calm and relaxing atmosphere.`,
     SoftwareUsed: "Software Used: 3ds Max | V-Ray | AutoCAD | Photoshop",
     link: "test.html?id=1",
+    category: "residential",
   },
 
   {
@@ -250,6 +251,7 @@ let projects = [
     experience rooted in nature.`,
     SoftwareUsed: "Software Used: 3ds Max | V-Ray | AutoCAD | Photoshop",
     link: "test.html?id=2",
+    category: "commercial",
   },
 ];
 
@@ -271,6 +273,7 @@ async function getProjects() {
 
   data.forEach((project) => {
     if (!project.image && !project.image_url) return;
+
     projects.push({
       id: project.id,
       image: project.image || project.image_url,
@@ -279,11 +282,10 @@ async function getProjects() {
       space: project.space,
       body: project.body,
       SoftwareUsed: project.software_used,
+      category: project.category,
       link: `test.html?id=${project.id}`,
     });
   });
-
-  console.log("All projects:", projects);
 
   allProject();
 }
@@ -298,7 +300,10 @@ function allProject() {
   for (let i = 0; i < projects.length; i++) {
     section6.innerHTML += `
       <hr>
-      <div class="all-project ${i % 2 !== 0 ? "reverse" : ""}">
+      <div 
+          class="all-project ${i % 2 !== 0 ? "reverse" : ""}"
+          data-category="${projects[i].category || ""}"
+        >
         <div class="project1">
           <p class="im">
             <img
@@ -331,9 +336,32 @@ function allProject() {
       </div>
     `;
   }
+  let categoryButtons = document.querySelectorAll("[data-cat]");
+
+  categoryButtons.forEach((button) => {
+    button.addEventListener("click", () => {
+      let category = button.dataset.cat;
+
+      categoryButtons.forEach((btn) => {
+        btn.classList.remove("active");
+      });
+
+      button.classList.add("active");
+
+      let allProjects = document.querySelectorAll(".all-project");
+
+      allProjects.forEach((project) => {
+        if (category === "all" || project.dataset.category === category) {
+          project.style.display = "block";
+        } else {
+          project.style.display = "none";
+        }
+      });
+    });
+  });
 }
 
-allProject();
+// allProject();
 
 // Add Project
 let add = document.querySelector("#add-projects");
@@ -343,6 +371,11 @@ let space = document.querySelector("#space");
 let body = document.querySelector("#body");
 let app = document.querySelector("#app");
 let addImage = document.querySelector("#add-image");
+let category = document.querySelector("#category");
+
+if (category) {
+  console.log("Category:", category.value);
+}
 
 let dayImages = document.querySelector("#day-images");
 let nightImages = document.querySelector("#night-images");
@@ -350,6 +383,8 @@ let closeImages = document.querySelector("#close-images");
 
 if (add) {
   add.addEventListener("click", async () => {
+    console.log(category);
+    console.log(category.value);
     if (addImage.files.length === 0) {
       alert("Choose a top image first");
       return;
@@ -385,6 +420,7 @@ if (add) {
         body: body.value,
         software_used: app.value,
         image: topImageUrl,
+        category: category.value,
       })
       .select()
       .single();
@@ -394,7 +430,7 @@ if (add) {
       return;
     }
 
-    console.log("Project added:", data);
+    // console.log("Project added:", data);
 
     // 3. Upload extra images
     async function uploadExtraImages(files, category) {

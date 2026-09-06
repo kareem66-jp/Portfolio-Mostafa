@@ -702,7 +702,7 @@ span.proje {
 section#s6 {
   color: white;
   margin: 0 10%;
-  padding: 5rem 0;
+  padding: 0rem 0 5rem 0;
 }
 p.par-s6 {
   color: #00b7d4;
@@ -1185,6 +1185,13 @@ p.Daylight {
 
 /* tablet */
 @media (min-width: 768px) and (max-width: 1024px) {
+  .categories {
+    margin: 3rem 5% !important;
+    flex-wrap: wrap;
+  }
+  button.btn-categorie {
+    font-size: 12px !important;
+  }
   #header,
   section.s1,
   section.s2,
@@ -1379,7 +1386,19 @@ p.Daylight {
 
 /* mobile */
 @media (max-width: 767px) {
-  /* HOME */
+  button#a,
+  button#r,
+  button#c,
+  button#ad {
+    width: 126px;
+  }
+  .categories {
+    margin: 3rem 1.5rem !important;
+    flex-wrap: wrap;
+  }
+  button.btn-categorie {
+    font-size: 12px !important;
+  }
 
   /* header */
   p.logo {
@@ -1678,6 +1697,9 @@ span.arrow:hover i {
 
 /* medium and large desktop: 1025px - 1600px */
 @media (min-width: 1025px) and (max-width: 1600px) {
+  /* .categories {
+    margin: 3rem 10% !important;
+  } */
   #header,
   section.s1,
   section.s2,
@@ -1824,6 +1846,12 @@ span.arrow:hover i {
 
 /* Narrow desktops need stacked content before the tablet layout starts. */
 @media (min-width: 1025px) and (max-width: 1240px) {
+  .categories {
+    margin: 3rem 10% !important;
+  }
+  button.btn-categorie {
+    font-size: 12px !important;
+  }
   section.s2 {
     flex-direction: column;
     align-items: stretch;
@@ -1897,8 +1925,20 @@ input#app,
 input#add-image,
 input#day-images,
 input#night-images,
-input#close-images {
+input#close-images,
+select#category {
   width: 100%;
+}
+select#category {
+  padding: 12px 24px;
+  background-color: #69696969;
+  border: 1px solid #999999d6;
+  border-radius: 16px;
+  height: 54px;
+  outline: none;
+  color: white;
+  font-weight: bold;
+  font-size: 18px;
 }
 textarea#body {
   height: 10rem;
@@ -1924,3 +1964,30 @@ h1.Add-Projects {
   color: #ffee92;
 }
 /* style add project */
+
+/* categories */
+
+.categories {
+  display: flex;
+  justify-content: center;
+  gap: 2.5rem;
+  margin: 3rem 0;
+}
+button.btn-categorie {
+  font-size: 1.1rem;
+  padding: 15px 25px;
+  border: none;
+  background-color: #4242426b;
+  color: white;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+button.btn-categorie:hover {
+  background-color: #00b7d4;
+}
+.categories button.active {
+  background-color: #00b7d4;
+}
+
+/* categories */
