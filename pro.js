@@ -237,7 +237,7 @@ let projects = [
             Japanese design, using natural materials, warm lighting, and a 
             minimalist approach to create a calm and relaxing atmosphere.`,
     SoftwareUsed: "Software Used: 3ds Max | V-Ray | AutoCAD | Photoshop",
-    link: "test.html?id=1",
+    link: "view-project.html?id=1",
     category: "residential",
   },
 
@@ -250,7 +250,7 @@ let projects = [
     marble, rock textures, and warm wood to create a luxurious retail 
     experience rooted in nature.`,
     SoftwareUsed: "Software Used: 3ds Max | V-Ray | AutoCAD | Photoshop",
-    link: "test.html?id=2",
+    link: "view-project.html?id=2",
     category: "commercial",
   },
 ];
@@ -283,7 +283,7 @@ async function getProjects() {
       body: project.body,
       SoftwareUsed: project.software_used,
       category: project.category,
-      link: `test.html?id=${project.id}`,
+      link: `view-project.html?id=${project.id}`,
     });
   });
 
@@ -301,16 +301,16 @@ function allProject() {
     section6.innerHTML += `
       <hr>
       <div 
-          class="all-project ${i % 2 !== 0 ? "reverse" : ""}"
+          class="all-project ${i % 2 !== 0 ? "reverse" : ""} "
           data-category="${projects[i].category || ""}"
         >
-        <div class="project1">
+        <div class="project1 ">
           <p class="im">
             <img
               src="${projects[i].image}"
               alt=""
               class="imge-pro"
-              onclick="window.location.href='${projects[i].link || `test.html?id=${projects[i].id}`}'"
+              onclick="window.location.href='${projects[i].link || `view-project.html?id=${projects[i].id}`}'"
             />
           </p>
           <div class="pargraf">
@@ -325,7 +325,7 @@ function allProject() {
               ${projects[i].SoftwareUsed}
             </p>
             <button
-              onclick="window.location.href='${projects[i].link || `test.html?id=${projects[i].id}`}'"
+              onclick="window.location.href='${projects[i].link || `view-project.html?id=${projects[i].id}`}'"
               id="view"
             >
               VIEW PROJECT
