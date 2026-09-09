@@ -7,6 +7,11 @@ const supabases = window.supabase.createClient(supabaseUrl, supabaseKey);
 let params = new URLSearchParams(window.location.search);
 let projectId = params.get("id");
 
+if (projectId == "1" || projectId == "2") {
+  document.querySelector("#shot-title").style.display = "none";
+  document.querySelector("#details-title").style.display = "none";
+}
+
 console.log("Project ID:", projectId);
 
 console.log(supabases);
@@ -35,14 +40,16 @@ async function testUpload() {
 // عرض طول الصفحه
 let progressBar = document.querySelector(".progress-bar");
 
-window.addEventListener("scroll", () => {
-  let scrollTop = window.scrollY;
-  let pageHeight = document.documentElement.scrollHeight - window.innerHeight;
+if (progressBar) {
+  window.addEventListener("scroll", () => {
+    let scrollTop = window.scrollY;
+    let pageHeight = document.documentElement.scrollHeight - window.innerHeight;
 
-  let progress = (scrollTop / pageHeight) * 100;
+    let progress = (scrollTop / pageHeight) * 100;
 
-  progressBar.style.width = progress + "%";
-});
+    progressBar.style.width = progress + "%";
+  });
+}
 // عرض طول الصفحه
 
 // slider
@@ -373,6 +380,31 @@ let app = document.querySelector("#app");
 let addImage = document.querySelector("#add-image");
 let category = document.querySelector("#category");
 
+let detailsImages = document.querySelector("#details-images");
+let detailsContainer = document.querySelector(".details-texts");
+
+if (detailsImages) {
+  detailsImages.addEventListener("change", () => {
+    detailsContainer.innerHTML = "";
+
+    Array.from(detailsImages.files).forEach((file, index) => {
+      let div = document.createElement("div");
+
+      div.innerHTML = `
+        <p>${file.name}</p>
+  
+        <input
+          type="text"
+          class="detail-text"
+          placeholder="Text for image ${index + 1}"
+        />
+      `;
+
+      detailsContainer.appendChild(div);
+    });
+  });
+}
+
 if (category) {
   console.log("Category:", category.value);
 }
@@ -380,6 +412,7 @@ if (category) {
 let dayImages = document.querySelector("#day-images");
 let nightImages = document.querySelector("#night-images");
 let closeImages = document.querySelector("#close-images");
+let shotImages = document.querySelector("#shot-images");
 
 if (add) {
   add.addEventListener("click", async () => {
@@ -433,6 +466,40 @@ if (add) {
     // console.log("Project added:", data);
 
     // 3. Upload extra images
+
+    // Upload Details images
+    let detailTexts = detailsContainer.querySelectorAll(".detail-text");
+
+    for (let i = 0; i < detailsImages.files.length; i++) {
+      let file = detailsImages.files[i];
+      let text = detailTexts[i].value;
+
+      let fileExtension = file.name.split(".").pop();
+      let fileName = `${Date.now()}-details-${i}.${fileExtension}`;
+
+      let { error: uploadError } = await supabases.storage
+        .from("project-images")
+        .upload(fileName, file);
+
+      if (uploadError) {
+        console.log("Details Image Upload Error:", uploadError);
+        continue;
+      }
+
+      let { data: imageData } = supabases.storage
+        .from("project-images")
+        .getPublicUrl(fileName);
+
+      let imageUrl = imageData.publicUrl;
+
+      await supabases.from("project_images").insert({
+        project_id: data.id,
+        image_url: imageUrl,
+        category: "details",
+        details_text: text,
+      });
+    }
+
     async function uploadExtraImages(files, category) {
       for (let i = 0; i < files.length; i++) {
         let file = files[i];
@@ -466,6 +533,7 @@ if (add) {
     await uploadExtraImages(dayImages.files, "day");
     await uploadExtraImages(nightImages.files, "night");
     await uploadExtraImages(closeImages.files, "close");
+    await uploadExtraImages(shotImages.files, "shot");
 
     alert("Project added successfully!");
   });
@@ -719,11 +787,55 @@ async function getProject() {
     return;
   }
 
+  let nightTitle = document.querySelector("#night-title");
+
+  let nightImages = extraImages.filter((image) => image.category === "night");
+
+  if (nightTitle && nightImages.length === 0) {
+    nightTitle.style.display = "none";
+  }
+
+  let dayTitle = document.querySelector("#day-title");
+
+  let dayImages = extraImages.filter((image) => image.category === "day");
+
+  if (dayTitle && dayImages.length === 0) {
+    dayTitle.style.display = "none";
+  }
+
+  let closeTitle = document.querySelector("#close-title");
+
+  let closeImages = extraImages.filter((image) => image.category === "close");
+
+  if (closeTitle && closeImages.length === 0) {
+    closeTitle.style.display = "none";
+  }
+
+  let shotTitle = document.querySelector("#shot-title");
+
+  let shotImages = extraImages.filter((image) => image.category === "shot");
+
+  if (shotTitle && shotImages.length === 0) {
+    shotTitle.style.display = "none";
+  }
+
+  let detailsTitle = document.querySelector("#details-title");
+
+  let detailsImages = extraImages.filter(
+    (image) => image.category === "details",
+  );
+
+  if (detailsTitle && detailsImages.length === 0) {
+    detailsTitle.style.display = "none";
+  }
+
   console.log("Extra Images:", extraImages);
 
   let gallery = document.querySelector(".images-dior");
   let gallery2 = document.querySelector(".images-dior1");
   let gallery3 = document.querySelector(".images-dior2");
+  let gallery4 = document.querySelector(".images-shot");
+  let galleryDetails = document.querySelector(".images-details");
 
   extraImages.forEach((projectImage) => {
     let img = document.createElement("img");
@@ -741,11 +853,30 @@ async function getProject() {
     if (projectImage.category == "close") {
       gallery3.appendChild(img);
     }
+
+    if (projectImage.category == "shot") {
+      gallery4.appendChild(img);
+    }
+
+    if (projectImage.category == "details") {
+      let div = document.createElement("div");
+
+      let text = document.createElement("p");
+      text.classList.add("my-class");
+
+      text.textContent = projectImage.details_text;
+
+      div.appendChild(img);
+      div.appendChild(text);
+
+      galleryDetails.appendChild(div);
+    }
   });
   let galleryImages = [
     { element: gallery, label: "Day Shot" },
     { element: gallery2, label: "Night Shot" },
     { element: gallery3, label: "Close Shot" },
+    { element: gallery4, label: "Shots" },
   ].flatMap(({ element, label }) =>
     [...element.querySelectorAll("img")].map((img) => {
       img.dataset.galleryLabel = label;
@@ -907,14 +1038,15 @@ if (sho) {
 
 let sp = document.querySelector(".arrow");
 
-window.addEventListener("scroll", function () {
-  if (this.scrollY >= 500) {
-    sp.classList.add("show");
-  } else {
-    sp.classList.remove("show");
-  }
-});
 if (sp) {
+  window.addEventListener("scroll", function () {
+    if (this.scrollY >= 500) {
+      sp.classList.add("show");
+    } else {
+      sp.classList.remove("show");
+    }
+  });
+
   sp.onclick = () => {
     window.scrollTo({
       top: 0,
