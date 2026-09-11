@@ -16,6 +16,24 @@ body {
   background: linear-gradient(to right, #0e131b, #00004a, #0e131b);
   overflow-x: hidden;
 }
+
+/* mouse effect */
+
+/* .cursor-glow {
+  position: fixed;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: var(--bg);
+  filter: blur(20px);
+  opacity: 0.8;
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+  z-index: -1;
+} */
+
+/* mouse effect */
+
 /* عرض طول الصفحه */
 .progress {
   position: fixed;
