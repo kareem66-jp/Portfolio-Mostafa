@@ -189,7 +189,6 @@ links.forEach((link) => {
 // =================================
 
 // btn bage
-
 let home = document.getElementById("home");
 let project = document.getElementById("projects");
 let contact = document.getElementById("contact");
